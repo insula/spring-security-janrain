@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.insula</groupId>
 	<artifactId>spring-security-janrain</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<name>spring-security-janrain</name>
 	<description>Spring Security Classes for Janrain (RPXNow) Authentication</description>
 	<organization>
