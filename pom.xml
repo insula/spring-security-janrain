@@ -1,0 +1,170 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.insula</groupId>
+	<artifactId>spring-security-janrain</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>spring-security-janrain</name>
+	<description>Spring Security Classes for Janrain (RPXNow) Authentication</description>
+	<organization>
+		<name>Insula Tecnologia</name>
+		<url>http://www.insula.com.br</url>
+	</organization>
+	<scm>
+		<connection>scm:git:git@github.com:insula/spring-security-janrain.git</connection>
+		<url>scm:git:git@github.com:insula/spring-security-janrain.git</url>
+		<developerConnection>scm:git:git@github.com:insula/spring-security-janrain.git</developerConnection>
+	</scm>
+	<distributionManagement>
+		<repository>
+			<id>maven-oss-insula</id>
+			<url>s3://maven-oss.insula.com.br/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>maven-oss-insula-snapshot</id>
+			<url>s3://maven-oss.insula.com.br/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<developers>
+		<developer>
+			<id>yanaga</id>
+			<name>Edson Yanaga</name>
+			<email>yanaga@insula.com.br</email>
+			<url>http://www.yanaga.com.br</url>
+			<organization>Insula Tecnologia</organization>
+			<organizationUrl>http://insula.com.br</organizationUrl>
+			<timezone>-3</timezone>
+			<roles>
+				<role>Project Leader</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+	<properties>
+		<spring.version>3.1.0.RELEASE</spring.version>
+		<spring-security.version>3.1.0.RELEASE</spring-security.version>
+	</properties>
+	<repositories>
+		<repository>
+			<id>spring-maven-release</id>
+			<name>Spring Maven Release Repository</name>
+			<url>http://maven.springframework.org/release</url>
+		</repository>
+		<repository>
+			<id>JBoss Repo</id>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+			<name>JBoss Repo</name>
+		</repository>
+		<repository>
+			<id>maven-oss-insula</id>
+			<name>Insula Maven OSS Releases Repository</name>
+			<url>http://maven-oss.insula.com.br/releases</url>
+		</repository>
+		<repository>
+			<id>maven-oss-insula-snapshots</id>
+			<name>Insula Maven OSS Snapshots Repository</name>
+			<url>http://maven-oss.insula.com.br/snapshots</url>
+			<snapshots>
+				<enabled />
+			</snapshots>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.1</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring-security.version}</version>
+			<optional>true</optional>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- <dependency> <groupId>org.springframework.security</groupId> <artifactId>spring-security-config</artifactId> <version>${spring-security.version}</version>
+			<optional>true</optional> <exclusions> <exclusion> <groupId>commons-logging</groupId> <artifactId>commons-logging</artifactId>
+			</exclusion> </exclusions> </dependency> -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring-security.version}</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.springframework.build.aws</groupId>
+				<artifactId>org.springframework.build.aws.maven</artifactId>
+				<version>3.0.0.RELEASE</version>
+			</extension>
+		</extensions>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.2.2</version>
+				<configuration>
+					<goals>
+						source:jar javadoc:jar deploy
+					</goals>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
