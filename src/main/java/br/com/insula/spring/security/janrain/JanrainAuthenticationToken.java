@@ -1,6 +1,5 @@
 package br.com.insula.spring.security.janrain;
 
-
 import java.util.Collection;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -15,16 +14,20 @@ public class JanrainAuthenticationToken extends AbstractAuthenticationToken {
 
 	private final String identifier;
 
+	private final String verifiedEmail;
+
 	private final String email;
 
 	private final String providerName;
 
 	private final String name;
 
-	public JanrainAuthenticationToken(String identifier, String email, String providerName, String name) {
+	public JanrainAuthenticationToken(String identifier, String verifiedEmail, String email, String providerName,
+			String name) {
 		super(AuthorityUtils.NO_AUTHORITIES);
 		this.principal = null;
 		this.identifier = identifier;
+		this.verifiedEmail = verifiedEmail;
 		this.email = email;
 		this.providerName = providerName;
 		this.name = name;
@@ -35,6 +38,7 @@ public class JanrainAuthenticationToken extends AbstractAuthenticationToken {
 		super(authorities);
 		this.principal = principal;
 		this.identifier = token.identifier;
+		this.verifiedEmail = token.verifiedEmail;
 		this.email = token.email;
 		this.providerName = token.providerName;
 		this.name = token.name;
@@ -54,6 +58,10 @@ public class JanrainAuthenticationToken extends AbstractAuthenticationToken {
 		return identifier;
 	}
 
+	public String getVerifiedEmail() {
+		return verifiedEmail;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -63,7 +71,7 @@ public class JanrainAuthenticationToken extends AbstractAuthenticationToken {
 	}
 
 	public String getName() {
-		return name; 
+		return name;
 	}
-	
+
 }

@@ -1,12 +1,16 @@
 package br.com.insula.spring.security.janrain;
 
-
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -18,17 +22,13 @@ import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.springframework.beans.factory.annotation.Required;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 public class JanrainService {
 
-	private HttpClient httpClient;
+	private HttpClient httpClient = new DefaultHttpClient(new ThreadSafeClientConnManager());
 
 	private String apiKey;
-
-	public JanrainService() {
-		this.httpClient = new DefaultHttpClient(new ThreadSafeClientConnManager());
-	}
 
 	public JanrainAuthenticationToken authenticate(String token) throws IOException {
 		HttpPost httpPost = new HttpPost("https://rpxnow.com/api/v2/auth_info");
@@ -41,24 +41,40 @@ public class JanrainService {
 		HttpResponse httpResponse = httpClient.execute(httpPost);
 
 		try {
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			dbf.setIgnoringElementContentWhitespace(true);
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document doc = db.parse(httpResponse.getEntity().getContent());
-			Element response = doc.getDocumentElement();
-			if (!response.getAttribute("stat").equals("ok")) {
-				throw new IllegalArgumentException("Unexpected API error");
+			InputStream content = httpResponse.getEntity().getContent();
+			Document document = parseContent(content);
+			XPath xPath = createXPath();
+			if (!getStringValue(document, xPath, "//rsp/@stat").equals("ok")) {
+				return null;
 			}
-			String email = response.getElementsByTagName("verifiedEmail").item(0).getTextContent();
-			String identifier = response.getElementsByTagName("identifier").item(0).getTextContent();
-			String name = response.getElementsByTagName("formatted").item(0).getTextContent();
-			String providerName = response.getElementsByTagName("providerName").item(0).getTextContent();
-			return new JanrainAuthenticationToken(identifier, email, providerName, name);
+			String identifier = getStringValue(document, xPath, "//rsp/profile/identifier");
+			String providerName = getStringValue(document, xPath, "//rsp/profile/providerName");
+			String name = getStringValue(document, xPath, "//rsp/profile/name/formatted");
+			String email = getStringValue(document, xPath, "//rsp/profile/email");
+			String verifiedEmail = getStringValue(document, xPath, "//rsp/profile/verifiedEmail");
+			return new JanrainAuthenticationToken(identifier, verifiedEmail, email, providerName, name);
 		}
 		catch (Exception ex) {
 			throw new IllegalStateException(ex);
 		}
+	}
 
+	protected Document parseContent(InputStream content) throws ParserConfigurationException, SAXException, IOException {
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		dbf.setIgnoringElementContentWhitespace(true);
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document doc = db.parse(content);
+		return doc;
+	}
+
+	protected XPath createXPath() {
+		XPathFactory xPathFactory = XPathFactory.newInstance();
+		return xPathFactory.newXPath();
+	}
+
+	private String getStringValue(Document document, XPath xPath, String expression) throws XPathExpressionException {
+		String value = xPath.evaluate(expression, document).trim();
+		return value.isEmpty() ? null : value;
 	}
 
 	@Required

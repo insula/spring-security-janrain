@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+	version="2.0">
+	<namespace>http://insula.com.br/janrain</namespace>
+	<tag>
+		<tag-name>embedded</tag-name>
+		<source>janrain/embedded.xhtml</source>
+		<attribute>
+			<description>The application name on janrain.com.</description>
+			<name>applicationName</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Localization setting. Suported languages are: ar bg cs da de el en es fi fr he hr hu id it ja lt nb-NO nl nl-BE
+nl-NL no pl pt pt-BR pt-PT ro ru sk sl sv sv-SE th uk zh zh-CHT. Default language is 'en'.</description>
+			<name>language</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Path relative to the context root for the tokenurl of janrain. Default is 'j_spring_janrain_security_check'</description>
+			<name>tokenPath</name>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<tag-name>modal</tag-name>
+		<source>janrain/modal.xhtml</source>
+		<attribute>
+			<description>The application name on janrain.com.</description>
+			<name>applicationName</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Localization setting. Suported languages are: ar bg cs da de el en es fi fr he hr hu id it ja lt nb-NO nl nl-BE
+nl-NL no pl pt pt-BR pt-PT ro ru sk sl sv sv-SE th uk zh zh-CHT. Default language is 'en'.</description>
+			<name>language</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Path relative to the context root for the tokenurl of janrain. Default is 'j_spring_janrain_security_check'</description>
+			<name>tokenPath</name>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+</facelet-taglib>

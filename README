@@ -1,0 +1,5 @@
+The spring-security-janrain project provides spring-security classes for the Janrain (formerly RPXNow!) authentication service.
+
+We also included two JSF2 components for using the embedded and modal Janrain widgets.
+
+More information available at the project wiki at https://github.com/insula/spring-security-janrain/wiki

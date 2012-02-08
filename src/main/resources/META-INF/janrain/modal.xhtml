@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+	<script type="text/javascript">
+		if (typeof window.janrain !== 'object')
+			window.janrain = {};
+		window.janrain.settings = {};
+
+		janrain.settings.tokenUrl = '#{empty tokenPath ? janrain.getTokenUrl(request) : janrain.getTokenUrl(request, path)}';
+		janrain.settings.language = '#{empty language ? "en" : language}';
+		janrain.ready = true;
+	</script>
+	<script src="#{janrain.getEngageJsUrl(request, applicationName)}" type="text/javascript" />
+	<a class="janrainEngage" href="#"><ui:insert /></a>
+</ui:composition>

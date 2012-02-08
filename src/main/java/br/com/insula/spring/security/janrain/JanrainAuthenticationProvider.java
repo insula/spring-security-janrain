@@ -1,6 +1,5 @@
 package br.com.insula.spring.security.janrain;
 
-
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
@@ -35,4 +34,5 @@ public class JanrainAuthenticationProvider implements AuthenticationProvider {
 			AuthenticationUserDetailsService<JanrainAuthenticationToken> authenticationUserDetailsService) {
 		this.authenticationUserDetailsService = authenticationUserDetailsService;
 	}
+
 }
