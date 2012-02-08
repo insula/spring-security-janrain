@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.insula</groupId>
 	<artifactId>spring-security-janrain</artifactId>
@@ -9,6 +10,15 @@
 		<name>Insula Tecnologia</name>
 		<url>http://www.insula.com.br</url>
 	</organization>
+	<url>https://github.com/insula/spring-security-janrain</url>
+	<inceptionYear>2012</inceptionYear>
+	<licenses>
+		<license>
+			<name>The GNU Lesser General Public License, Version 3.0</name>
+			<url>http://www.gnu.org/licenses/lgpl.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	<scm>
 		<connection>scm:git:git@github.com:insula/spring-security-janrain.git</connection>
 		<url>scm:git:git@github.com:insula/spring-security-janrain.git</url>
