@@ -58,24 +58,6 @@
 			<name>Spring Maven Release Repository</name>
 			<url>http://maven.springframework.org/release</url>
 		</repository>
-		<repository>
-			<id>JBoss Repo</id>
-			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
-			<name>JBoss Repo</name>
-		</repository>
-		<repository>
-			<id>maven-oss-insula</id>
-			<name>Insula Maven OSS Releases Repository</name>
-			<url>http://maven-oss.insula.com.br/releases</url>
-		</repository>
-		<repository>
-			<id>maven-oss-insula-snapshots</id>
-			<name>Insula Maven OSS Snapshots Repository</name>
-			<url>http://maven-oss.insula.com.br/snapshots</url>
-			<snapshots>
-				<enabled />
-			</snapshots>
-		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -122,9 +104,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- <dependency> <groupId>org.springframework.security</groupId> <artifactId>spring-security-config</artifactId> <version>${spring-security.version}</version>
-			<optional>true</optional> <exclusions> <exclusion> <groupId>commons-logging</groupId> <artifactId>commons-logging</artifactId>
-			</exclusion> </exclusions> </dependency> -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
