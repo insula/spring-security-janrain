@@ -33,7 +33,7 @@ public class Janrain {
 	public String getTokenUrl(HttpServletRequest request, String path) throws UnsupportedEncodingException {
 		Assert.notNull(request, "'request' cannot be null");
 		Assert.notNull(request, "'path' cannot be null");
-		if (isHttpWithDefaultPort(request) || isHttpsWithDefaultPort(request)) {
+		if (isRequestInDefaultPort(request)) {
 			return String.format("%s://%s%s/%s", request.getScheme(), request.getServerName(),
 					request.getContextPath(), path);
 		}
@@ -44,15 +44,7 @@ public class Janrain {
 	}
 
 	public String getTokenUrl(HttpServletRequest request) throws UnsupportedEncodingException {
-		Assert.notNull(request, "'request' cannot be null");
-		if (isHttpWithDefaultPort(request) || isHttpsWithDefaultPort(request)) {
-			return String.format("%s://%s%s/j_spring_janrain_security_check", request.getScheme(),
-					request.getServerName(), request.getContextPath());
-		}
-		else {
-			return String.format("%s://%s:%d%s/j_spring_janrain_security_check", request.getScheme(),
-					request.getServerName(), request.getServerPort(), request.getContextPath());
-		}
+		return getTokenUrl(request, "j_spring_janrain_security_check");
 	}
 
 	public String getEngageJsUrl(HttpServletRequest request, String applicationName) {
@@ -63,6 +55,10 @@ public class Janrain {
 		else {
 			return String.format("http://widget-cdn.rpxnow.com/js/lib/%s/engage.js", applicationName);
 		}
+	}
+
+	private boolean isRequestInDefaultPort(HttpServletRequest request) {
+		return isHttpWithDefaultPort(request) || isHttpsWithDefaultPort(request);
 	}
 
 	private boolean isHttpWithDefaultPort(HttpServletRequest request) {
