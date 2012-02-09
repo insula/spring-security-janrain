@@ -49,7 +49,8 @@ public class JanrainService {
 
 	private String apiKey;
 
-	public JanrainAuthenticationToken authenticate(String token) throws Exception {
+	public JanrainAuthenticationToken authenticate(String token) throws IOException, XPathExpressionException,
+			ParserConfigurationException, SAXException {
 		HttpResponse httpResponse = httpClient.execute(createHttpPostRequest(token));
 		InputStream content = httpResponse.getEntity().getContent();
 		return parseJanrainAuthenticationToken(content);
@@ -82,8 +83,7 @@ public class JanrainService {
 		params.add(new BasicNameValuePair("format", "xml"));
 		params.add(new BasicNameValuePair("apiKey", apiKey));
 		params.add(new BasicNameValuePair("token", token));
-		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
-		return entity;
+		return new UrlEncodedFormEntity(params, "UTF-8");
 	}
 
 	private Document parseContent(InputStream content) throws ParserConfigurationException, SAXException, IOException {
