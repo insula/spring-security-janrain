@@ -26,6 +26,10 @@ import org.springframework.util.Assert;
 
 public class Janrain {
 
+	private static final int HTTPS_PORT = 443;
+
+	private static final int HTTP_PORT = 80;
+
 	public String getTokenUrl(HttpServletRequest request, String path) throws UnsupportedEncodingException {
 		Assert.notNull(request, "'request' cannot be null");
 		Assert.notNull(request, "'path' cannot be null");
@@ -33,8 +37,10 @@ public class Janrain {
 			return String.format("%s://%s%s/%s", request.getScheme(), request.getServerName(),
 					request.getContextPath(), path);
 		}
-		return String.format("%s://%s:%d%s/%s", request.getScheme(), request.getServerName(), request.getServerPort(),
-				request.getContextPath());
+		else {
+			return String.format("%s://%s:%d%s/%s", request.getScheme(), request.getServerName(),
+					request.getServerPort(), request.getContextPath(), path);
+		}
 	}
 
 	public String getTokenUrl(HttpServletRequest request) throws UnsupportedEncodingException {
@@ -43,8 +49,10 @@ public class Janrain {
 			return String.format("%s://%s%s/j_spring_janrain_security_check", request.getScheme(),
 					request.getServerName(), request.getContextPath());
 		}
-		return String.format("%s://%s:%d%s/j_spring_janrain_security_check", request.getScheme(),
-				request.getServerName(), request.getServerPort(), request.getContextPath());
+		else {
+			return String.format("%s://%s:%d%s/j_spring_janrain_security_check", request.getScheme(),
+					request.getServerName(), request.getServerPort(), request.getContextPath());
+		}
 	}
 
 	public String getEngageJsUrl(HttpServletRequest request, String applicationName) {
@@ -58,11 +66,11 @@ public class Janrain {
 	}
 
 	private boolean isHttpWithDefaultPort(HttpServletRequest request) {
-		return "http".equals(request.getScheme()) && request.getServerPort() == 80;
+		return "http".equals(request.getScheme()) && request.getServerPort() == HTTP_PORT;
 	}
 
 	private boolean isHttpsWithDefaultPort(HttpServletRequest request) {
-		return "https".equals(request.getScheme()) && request.getServerPort() == 443;
+		return "https".equals(request.getScheme()) && request.getServerPort() == HTTPS_PORT;
 	}
 
 }

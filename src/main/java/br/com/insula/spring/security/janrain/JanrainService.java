@@ -20,6 +20,7 @@ package br.com.insula.spring.security.janrain;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,44 +49,51 @@ public class JanrainService {
 
 	private String apiKey;
 
-	public JanrainAuthenticationToken authenticate(String token) throws IOException {
+	public JanrainAuthenticationToken authenticate(String token) throws Exception {
+		HttpResponse httpResponse = httpClient.execute(createHttpPostRequest(token));
+		InputStream content = httpResponse.getEntity().getContent();
+		return parseJanrainAuthenticationToken(content);
+	}
+
+	private JanrainAuthenticationToken parseJanrainAuthenticationToken(InputStream content)
+			throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+		Document document = parseContent(content);
+		XPath xPath = createXPath();
+		if (!getStringValue(document, xPath, "//rsp/@stat").equals("ok")) {
+			return null;
+		}
+		String identifier = getStringValue(document, xPath, "//rsp/profile/identifier");
+		String providerName = getStringValue(document, xPath, "//rsp/profile/providerName");
+		String name = getStringValue(document, xPath, "//rsp/profile/name/formatted");
+		String email = getStringValue(document, xPath, "//rsp/profile/email");
+		String verifiedEmail = getStringValue(document, xPath, "//rsp/profile/verifiedEmail");
+		return new JanrainAuthenticationToken(identifier, verifiedEmail, email, providerName, name);
+	}
+
+	private HttpPost createHttpPostRequest(String token) throws UnsupportedEncodingException {
 		HttpPost httpPost = new HttpPost("https://rpxnow.com/api/v2/auth_info");
+		UrlEncodedFormEntity entity = createHttpPostFormRequestEntity(token);
+		httpPost.setEntity(entity);
+		return httpPost;
+	}
+
+	private UrlEncodedFormEntity createHttpPostFormRequestEntity(String token) throws UnsupportedEncodingException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("format", "xml"));
 		params.add(new BasicNameValuePair("apiKey", apiKey));
 		params.add(new BasicNameValuePair("token", token));
 		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
-		httpPost.setEntity(entity);
-		HttpResponse httpResponse = httpClient.execute(httpPost);
-
-		try {
-			InputStream content = httpResponse.getEntity().getContent();
-			Document document = parseContent(content);
-			XPath xPath = createXPath();
-			if (!getStringValue(document, xPath, "//rsp/@stat").equals("ok")) {
-				return null;
-			}
-			String identifier = getStringValue(document, xPath, "//rsp/profile/identifier");
-			String providerName = getStringValue(document, xPath, "//rsp/profile/providerName");
-			String name = getStringValue(document, xPath, "//rsp/profile/name/formatted");
-			String email = getStringValue(document, xPath, "//rsp/profile/email");
-			String verifiedEmail = getStringValue(document, xPath, "//rsp/profile/verifiedEmail");
-			return new JanrainAuthenticationToken(identifier, verifiedEmail, email, providerName, name);
-		}
-		catch (Exception ex) {
-			throw new IllegalStateException(ex);
-		}
+		return entity;
 	}
 
-	protected Document parseContent(InputStream content) throws ParserConfigurationException, SAXException, IOException {
+	private Document parseContent(InputStream content) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setIgnoringElementContentWhitespace(true);
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document doc = db.parse(content);
-		return doc;
+		return db.parse(content);
 	}
 
-	protected XPath createXPath() {
+	private XPath createXPath() {
 		XPathFactory xPathFactory = XPathFactory.newInstance();
 		return xPathFactory.newXPath();
 	}

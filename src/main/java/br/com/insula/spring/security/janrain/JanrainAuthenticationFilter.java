@@ -27,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 
 public class JanrainAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
@@ -40,17 +39,22 @@ public class JanrainAuthenticationFilter extends AbstractAuthenticationProcessin
 
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-			throws AuthenticationException, IOException, ServletException {
+			throws IOException, ServletException {
 		String token = request.getParameter("token");
 
 		if (token != null && !token.isEmpty()) {
-			JanrainAuthenticationToken authentication = janrainService.authenticate(token);
-			if (authentication != null) {
-				return getAuthenticationManager().authenticate(authentication);
+			try {
+				JanrainAuthenticationToken authentication = janrainService.authenticate(token);
+				if (authentication != null) {
+					return getAuthenticationManager().authenticate(authentication);
+				}
+				else {
+					throw new AuthenticationServiceException(
+							"Unable to parse authentication. Is your 'applicationName' correct?");
+				}
 			}
-			else {
-				throw new AuthenticationServiceException(
-						"Unable to parse authentication. Is your 'applicationName' correct?");
+			catch (Exception ex) {
+				throw new ServletException(ex);
 			}
 		}
 
