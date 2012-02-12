@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.insula</groupId>
 	<artifactId>spring-security-janrain</artifactId>
@@ -51,8 +52,8 @@
 	<properties>
 		<spring.version>3.1.0.RELEASE</spring.version>
 		<spring-security.version>3.1.0.RELEASE</spring-security.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j.version>1.6.1</slf4j.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<slf4j.version>1.6.1</slf4j.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -63,7 +64,7 @@
 	</repositories>
 	<dependencies>
 		<dependency>
-		    <groupId>org.slf4j</groupId>
+			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
@@ -72,12 +73,12 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-nop</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
@@ -163,93 +164,92 @@
 		</plugins>
 	</build>
 
-    <profiles>
-        <!-- Testing with JUnit / Mockito (Java) -->
-        <profile>
-            <id>junit</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                    <version>4.8.2</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.mockito</groupId>
-                    <artifactId>mockito-all</artifactId>
-                    <version>1.9.0</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <!-- Testing with Spock (Groovy)-->
-            <id>spock</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.codehaus.groovy</groupId>
-                    <artifactId>groovy-all</artifactId>
-                    <version>1.8.6</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.spockframework</groupId>
-                    <artifactId>spock-core</artifactId>
-                    <version>0.5-groovy-1.8</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>cglib</groupId>
-                    <artifactId>cglib-nodep</artifactId>
-                    <version>2.2.2</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <!-- Compiles groovy -->
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <id>test-compile</id>
-                                <phase>test-compile</phase>
-                                <configuration>
-                                    <target>
-                                        <mkdir dir="${basedir}/src/test/java"/>
-                                        <taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc">
-                                            <classpath refid="maven.test.classpath"/>
-                                        </taskdef>
-                                        <mkdir dir="${project.build.testOutputDirectory}"/>
-                                        <groovyc destdir="${project.build.testOutputDirectory}"
-                                                 srcdir="${basedir}/src/test/java/" listfiles="false"
-                                                 encoding="${project.build.sourceEncoding}">
-                                            <classpath refid="maven.test.classpath"/>
-                                        </groovyc>
-                                    </target>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- Run specs instead of tests -->
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.10</version>
-                        <configuration>
-                            <includes>
-                                <include>**/*Spec.class</include>
-                            </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+	<profiles>
+		<!-- Testing with JUnit / Mockito (Java) -->
+		<profile>
+			<id>junit</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<version>4.8.2</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.mockito</groupId>
+					<artifactId>mockito-all</artifactId>
+					<version>1.9.0</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<!-- Testing with Spock (Groovy) -->
+			<id>spock</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.codehaus.groovy</groupId>
+					<artifactId>groovy-all</artifactId>
+					<version>1.8.6</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.spockframework</groupId>
+					<artifactId>spock-core</artifactId>
+					<version>0.5-groovy-1.8</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>cglib</groupId>
+					<artifactId>cglib-nodep</artifactId>
+					<version>2.2.2</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<!-- Compiles groovy -->
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>test-compile</id>
+								<phase>test-compile</phase>
+								<configuration>
+									<target>
+										<mkdir dir="${basedir}/src/test/java" />
+										<taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc">
+											<classpath refid="maven.test.classpath" />
+										</taskdef>
+										<mkdir dir="${project.build.testOutputDirectory}" />
+										<groovyc destdir="${project.build.testOutputDirectory}" srcdir="${basedir}/src/test/java/" listfiles="false"
+											encoding="${project.build.sourceEncoding}">
+											<classpath refid="maven.test.classpath" />
+										</groovyc>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Run specs instead of tests -->
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.10</version>
+						<configuration>
+							<includes>
+								<include>**/*Spec.class</include>
+							</includes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
