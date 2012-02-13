@@ -48,14 +48,7 @@ public class JanrainServiceTest {
 		HttpResponse response = mock(HttpResponse.class);
 		HttpEntity httpEntity = mock(HttpEntity.class);
 
-		String xml = "<?xml version='1.0' encoding='UTF-8'?>\n" + "<rsp stat='ok'>\n" + "  <profile>\n"
-				+ "    <displayName>\n" + "      First Last\n" + "    </displayName>\n" + "    <identifier>\n"
-				+ "      http://twitter.com/account/profile?user_id=12345678\n" + "    </identifier>\n"
-				+ "    <name>\n" + "      <formatted>\n" + "        First Last\n" + "      </formatted>\n"
-				+ "    </name>\n" + "    <photo>\n" + "      http://a3.twimg.com/profile_images/12345678/picture.jpg\n"
-				+ "    </photo>\n" + "    <preferredUsername>\n" + "      username\n" + "    </preferredUsername>\n"
-				+ "    <providerName>\n" + "      Twitter\n" + "    </providerName>\n" + "    <url>\n"
-				+ "      http://twitter.com/edsonyanaga\n" + "    </url>\n" + "  </profile>\n" + "</rsp>";
+		String xml = "<?xml version='1.0' encoding='UTF-8'?><rsp stat='ok'><profile><displayName>First Last</displayName><identifier>http://twitter.com/account/profile?user_id=12345678</identifier><name><formatted>First Last</formatted></name><photo>http://a3.twimg.com/profile_images/12345678/picture.jpg</photo><preferredUsername>username</preferredUsername><providerName>Twitter</providerName><url>http://twitter.com/edsonyanaga</url></profile></rsp>";
 
 		when(httpEntity.getContent()).thenReturn(new ByteArrayInputStream(xml.getBytes()));
 		when(response.getEntity()).thenReturn(httpEntity);
@@ -74,17 +67,7 @@ public class JanrainServiceTest {
 		HttpResponse response = mock(HttpResponse.class);
 		HttpEntity httpEntity = mock(HttpEntity.class);
 
-		String xml = "<?xml version='1.0' encoding='UTF-8'?>\n" + "<rsp stat='ok'>\n" + "  <profile>\n"
-				+ "    <displayName>\n" + "      user\n" + "    </displayName>\n" + "    <email>\n"
-				+ "      my@email.com\n" + "    </email>\n" + "    <identifier>\n"
-				+ "      https://www.google.com/profiles/abcdefghi12345678\n" + "    </identifier>\n" + "    <name>\n"
-				+ "      <givenName>\n" + "        First\n" + "      </givenName>\n" + "      <familyName>\n"
-				+ "        Last\n" + "      </familyName>\n" + "      <formatted>\n" + "        First Last\n"
-				+ "      </formatted>\n" + "    </name>\n" + "    <preferredUsername>\n" + "      user\n"
-				+ "    </preferredUsername>\n" + "    <providerName>\n" + "      Google\n" + "    </providerName>\n"
-				+ "    <url>\n" + "      https://www.google.com/profiles/abcdefghi12345678\n" + "    </url>\n"
-				+ "    <verifiedEmail>\n" + "      my@email.com\n" + "    </verifiedEmail>\n" + "    <googleUserId>\n"
-				+ "      abcdefghi12345678\n" + "    </googleUserId>\n" + "  </profile>\n" + "</rsp>";
+		String xml = "<?xml version='1.0' encoding='UTF-8'?><rsp stat='ok'><profile><displayName>user</displayName><email>my@email.com</email><identifier>https://www.google.com/profiles/abcdefghi12345678</identifier><name><givenName>First</givenName><familyName>Last</familyName><formatted>First Last</formatted></name><preferredUsername>user</preferredUsername><providerName>Google</providerName><url>https://www.google.com/profiles/abcdefghi12345678</url><verifiedEmail>my@email.com</verifiedEmail><googleUserId>abcdefghi12345678</googleUserId></profile></rsp>";
 
 		when(httpEntity.getContent()).thenReturn(new ByteArrayInputStream(xml.getBytes()));
 		when(response.getEntity()).thenReturn(httpEntity);
@@ -104,20 +87,7 @@ public class JanrainServiceTest {
 		HttpResponse response = mock(HttpResponse.class);
 		HttpEntity httpEntity = mock(HttpEntity.class);
 
-		String xml = "<?xml version='1.0' encoding='UTF-8'?>\n" + "<rsp stat='ok'>\n" + "  <profile>\n"
-				+ "    <address>\n" + "      <formatted>\n" + "        City\n" + "      </formatted>\n"
-				+ "    </address>\n" + "    <displayName>\n" + "      First Last\n" + "    </displayName>\n"
-				+ "    <email>\n" + "      my@email.com\n" + "    </email>\n" + "    <gender>\n" + "      male\n"
-				+ "    </gender>\n" + "    <identifier>\n" + "      http://www.facebook.com/profile.php?id=123456789\n"
-				+ "    </identifier>\n" + "    <name>\n" + "      <givenName>\n" + "        First\n"
-				+ "      </givenName>\n" + "      <familyName>\n" + "        Last\n" + "      </familyName>\n"
-				+ "      <formatted>\n" + "        First Last\n" + "      </formatted>\n" + "    </name>\n"
-				+ "    <photo>\n" + "      http://graph.facebook.com/123456789/picture?type=large\n" + "    </photo>\n"
-				+ "    <preferredUsername>\n" + "      FirstLast\n" + "    </preferredUsername>\n"
-				+ "    <providerName>\n" + "      Facebook\n" + "    </providerName>\n" + "    <url>\n"
-				+ "      http://www.facebook.com/firstlast\n" + "    </url>\n" + "    <utcOffset>\n" + "      -02:00\n"
-				+ "    </utcOffset>\n" + "    <verifiedEmail>\n" + "      my@email.com\n" + "    </verifiedEmail>\n"
-				+ "    <limitedData>\n" + "      false\n" + "    </limitedData>\n" + "  </profile>\n" + "</rsp>";
+		String xml = "<?xml version='1.0' encoding='UTF-8'?><rsp stat='ok'><profile><address><formatted>City</formatted></address><displayName>First Last</displayName><email>my@email.com</email><gender>male</gender><identifier>http://www.facebook.com/profile.php?id=123456789</identifier><name><givenName>First</givenName><familyName>Last</familyName><formatted>First Last</formatted></name><photo>http://graph.facebook.com/123456789/picture?type=large</photo><preferredUsername>FirstLast</preferredUsername><providerName>Facebook</providerName><url>http://www.facebook.com/firstlast</url><utcOffset>-02:00</utcOffset><verifiedEmail>my@email.com</verifiedEmail><limitedData>false</limitedData></profile></rsp>";
 
 		when(httpEntity.getContent()).thenReturn(new ByteArrayInputStream(xml.getBytes()));
 		when(response.getEntity()).thenReturn(httpEntity);
@@ -137,17 +107,7 @@ public class JanrainServiceTest {
 		HttpResponse response = mock(HttpResponse.class);
 		HttpEntity httpEntity = mock(HttpEntity.class);
 
-		String xml = "<?xml version='1.0' encoding='UTF-8'?>\n" + "<rsp stat='ok'>\n" + "  <profile>\n"
-				+ "    <displayName>\n" + "      First\n" + "    </displayName>\n" + "    <email>\n"
-				+ "      my@email.com\n" + "    </email>\n" + "    <gender>\n" + "      male\n" + "    </gender>\n"
-				+ "    <identifier>\n" + "      https://me.yahoo.com/a/asdfasdf_sdaklfdjiou123#1234d\n"
-				+ "    </identifier>\n" + "    <name>\n" + "      <formatted>\n" + "        First Last\n"
-				+ "      </formatted>\n" + "    </name>\n" + "    <photo>\n"
-				+ "      https://a123.e.akamai.net/sec.yimg.com/i/identity/profile_12a.png\n" + "    </photo>\n"
-				+ "    <preferredUsername>\n" + "      First\n" + "    </preferredUsername>\n" + "    <providerName>\n"
-				+ "      Yahoo!\n" + "    </providerName>\n" + "    <utcOffset>\n" + "      -03:00\n"
-				+ "    </utcOffset>\n" + "    <verifiedEmail>\n" + "      my@email.com\n" + "    </verifiedEmail>\n"
-				+ "  </profile>\n" + "</rsp>";
+		String xml = "<?xml version='1.0' encoding='UTF-8'?><rsp stat='ok'><profile><displayName>First</displayName><email>my@email.com</email><gender>male</gender><identifier>https://me.yahoo.com/a/asdfasdf_sdaklfdjiou123#1234d</identifier><name><formatted>First Last</formatted></name><photo>https://a123.e.akamai.net/sec.yimg.com/i/identity/profile_12a.png</photo><preferredUsername>First</preferredUsername><providerName>Yahoo!</providerName><utcOffset>-03:00</utcOffset><verifiedEmail>my@email.com</verifiedEmail></profile></rsp>";
 
 		when(httpEntity.getContent()).thenReturn(new ByteArrayInputStream(xml.getBytes()));
 		when(response.getEntity()).thenReturn(httpEntity);
@@ -167,16 +127,7 @@ public class JanrainServiceTest {
 		HttpResponse response = mock(HttpResponse.class);
 		HttpEntity httpEntity = mock(HttpEntity.class);
 
-		String xml = "<?xml version='1.0' encoding='UTF-8'?>\n" + "<rsp stat='ok'>\n" + "  <profile>\n"
-				+ "    <displayName>\n" + "      First\n" + "    </displayName>\n" + "    <email>\n"
-				+ "      my@email.com\n" + "    </email>\n" + "    <identifier>\n"
-				+ "      http://cid-abcdd123123123.spaces.live.com/\n" + "    </identifier>\n" + "    <name>\n"
-				+ "      <givenName>\n" + "        First\n" + "      </givenName>\n" + "      <familyName>\n"
-				+ "        Last\n" + "      </familyName>\n" + "      <formatted>\n" + "        First Last\n"
-				+ "      </formatted>\n" + "    </name>\n" + "    <preferredUsername>\n" + "      First\n"
-				+ "    </preferredUsername>\n" + "    <providerName>\n" + "      Windows Live\n"
-				+ "    </providerName>\n" + "    <url>\n" + "      http://cid-abcdd123123123.spaces.live.com/\n"
-				+ "    </url>\n" + "  </profile>\n" + "</rsp>";
+		String xml = "<?xml version='1.0' encoding='UTF-8'?><rsp stat='ok'><profile><displayName>First</displayName><email>my@email.com</email><identifier>http://cid-abcdd123123123.spaces.live.com/</identifier><name><givenName>First</givenName><familyName>Last</familyName><formatted>First Last</formatted></name><preferredUsername>First</preferredUsername><providerName>Windows Live</providerName><url>http://cid-abcdd123123123.spaces.live.com/</url></profile></rsp>";
 
 		when(httpEntity.getContent()).thenReturn(new ByteArrayInputStream(xml.getBytes()));
 		when(response.getEntity()).thenReturn(httpEntity);
@@ -196,37 +147,7 @@ public class JanrainServiceTest {
 		HttpResponse response = mock(HttpResponse.class);
 		HttpEntity httpEntity = mock(HttpEntity.class);
 
-		String xml = "<?xml version='1.0' encoding='UTF-8'?>\n"
-				+ "<rsp stat='ok'>\n"
-				+ "  <profile>\n"
-				+ "    <birthday>\n"
-				+ "      2012-02-08\n"
-				+ "    </birthday>\n"
-				+ "    <displayName>\n"
-				+ "      First Last\n"
-				+ "    </displayName>\n"
-				+ "    <identifier>\n"
-				+ "      http://www.linkedin.com/profile?viewProfile=abcdefg\n"
-				+ "    </identifier>\n"
-				+ "    <name>\n"
-				+ "      <givenName>\n"
-				+ "        First\n"
-				+ "      </givenName>\n"
-				+ "      <familyName>\n"
-				+ "        Last\n"
-				+ "      </familyName>\n"
-				+ "      <formatted>\n"
-				+ "        First Last\n"
-				+ "      </formatted>\n"
-				+ "    </name>\n"
-				+ "    <phoneNumber>\n"
-				+ "      +55 11 1234-1234\n"
-				+ "    </phoneNumber>\n"
-				+ "    <photo>\n"
-				+ "      http://media.linkedin.com/mpr/mprx/0_sadfasfdasfdafdqwueroijsajdflkjasklufopiqwul;kjsdlkjaoiuqwkejrlkjlksaf\n"
-				+ "    </photo>\n" + "    <preferredUsername>\n" + "      First Last\n" + "    </preferredUsername>\n"
-				+ "    <providerName>\n" + "      LinkedIn\n" + "    </providerName>\n" + "    <url>\n"
-				+ "      http://www.insula.com.br\n" + "    </url>\n" + "  </profile>\n" + "</rsp>";
+		String xml = "<?xml version='1.0' encoding='UTF-8'?><rsp stat='ok'><profile><birthday>2012-02-08</birthday><displayName>First Last</displayName><identifier>http://www.linkedin.com/profile?viewProfile=abcdefg</identifier><name><givenName>First</givenName><familyName>Last</familyName><formatted>First Last</formatted></name><phoneNumber>+55 11 1234-1234</phoneNumber><photo>http://media.linkedin.com/mpr/mprx/0_sadfasfdasfdafdqwueroijsajdflkjasklufopiqwul;kjsdlkjaoiuqwkejrlkjlksaf</photo><preferredUsername>First Last</preferredUsername><providerName>LinkedIn</providerName><url>http://www.insula.com.br</url></profile></rsp>";
 
 		when(httpEntity.getContent()).thenReturn(new ByteArrayInputStream(xml.getBytes()));
 		when(response.getEntity()).thenReturn(httpEntity);
