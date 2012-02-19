@@ -5,7 +5,7 @@
 			window.janrain = {};
 		window.janrain.settings = {};
 
-		janrain.settings.tokenUrl = '#{empty tokenPath ? janrain.getTokenUrl(request) : janrain.getTokenUrl(request, path)}';
+		janrain.settings.tokenUrl = '#{empty tokenPath ? janrain.getTokenUrl(request) : janrain.getTokenUrl(request, tokenPath)}';
 		janrain.settings.language = '#{empty language ? "en" : language}';
 		janrain.ready = true;
 	</script>
