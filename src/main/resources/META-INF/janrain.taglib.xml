@@ -19,7 +19,11 @@ nl-NL no pl pt pt-BR pt-PT ro ru sk sl sv sv-SE th uk zh zh-CHT. Default languag
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Path relative to the context root for the tokenurl of janrain. Default is 'j_spring_janrain_security_check'</description>
+			<description>
+			Path relative to the server root (with the contextPath) for the tokenurl of janrain.
+			Default is '#{request.contextPath}/j_spring_janrain_security_check' if this attribute is not provided.
+			Must start with '/'.
+			</description>
 			<name>tokenPath</name>
 			<type>java.lang.String</type>
 		</attribute>
@@ -40,7 +44,11 @@ nl-NL no pl pt pt-BR pt-PT ro ru sk sl sv sv-SE th uk zh zh-CHT. Default languag
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Path relative to the context root for the tokenurl of janrain. Default is 'j_spring_janrain_security_check'</description>
+			<description>
+			Path relative to the server root (with the contextPath) for the tokenurl of janrain.
+			Default is '#{request.contextPath}/j_spring_janrain_security_check' if this attribute is not provided.
+			Must start with '/'.
+			</description>
 			<name>tokenPath</name>
 			<type>java.lang.String</type>
 		</attribute>

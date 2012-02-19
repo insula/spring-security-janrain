@@ -18,33 +18,34 @@
  */
 package br.com.insula.spring.security.janrain;
 
-import java.io.UnsupportedEncodingException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.util.Assert;
 
 public class Janrain {
 
+	private static final String JANRAIN_URI = "/j_spring_janrain_security_check";
+
 	private static final int HTTPS_PORT = 443;
 
 	private static final int HTTP_PORT = 80;
 
-	public String getTokenUrl(HttpServletRequest request, String path) throws UnsupportedEncodingException {
+	public String getTokenUrl(HttpServletRequest request, String path) {
 		Assert.notNull(request, "'request' cannot be null");
 		Assert.notNull(request, "'path' cannot be null");
-		if (isRequestInDefaultPort(request)) {
-			return String.format("%s://%s%s/%s", request.getScheme(), request.getServerName(),
-					request.getContextPath(), path);
+		Assert.isTrue(path.startsWith("/"), "path must start with '/'");
+		String scheme = request.getScheme();
+		int serverPort = request.getServerPort();
+		if (isRequestInDefaultPort(scheme, serverPort)) {
+			return String.format("%s://%s%s", scheme, request.getServerName(), path);
 		}
 		else {
-			return String.format("%s://%s:%d%s/%s", request.getScheme(), request.getServerName(),
-					request.getServerPort(), request.getContextPath(), path);
+			return String.format("%s://%s:%d%s", scheme, request.getServerName(), serverPort, path);
 		}
 	}
 
-	public String getTokenUrl(HttpServletRequest request) throws UnsupportedEncodingException {
-		return getTokenUrl(request, "j_spring_janrain_security_check");
+	public String getTokenUrl(HttpServletRequest request) {
+		return getTokenUrl(request, String.format("%s%s", request.getContextPath(), JANRAIN_URI));
 	}
 
 	public String getEngageJsUrl(HttpServletRequest request, String applicationName) {
@@ -57,16 +58,16 @@ public class Janrain {
 		}
 	}
 
-	private boolean isRequestInDefaultPort(HttpServletRequest request) {
-		return isHttpWithDefaultPort(request) || isHttpsWithDefaultPort(request);
+	private boolean isRequestInDefaultPort(String scheme, int serverPort) {
+		return isHttpWithDefaultPort(scheme, serverPort) || isHttpsWithDefaultPort(scheme, serverPort);
 	}
 
-	private boolean isHttpWithDefaultPort(HttpServletRequest request) {
-		return "http".equals(request.getScheme()) && request.getServerPort() == HTTP_PORT;
+	private boolean isHttpWithDefaultPort(String scheme, int serverPort) {
+		return "http".equals(scheme) && serverPort == HTTP_PORT;
 	}
 
-	private boolean isHttpsWithDefaultPort(HttpServletRequest request) {
-		return "https".equals(request.getScheme()) && request.getServerPort() == HTTPS_PORT;
+	private boolean isHttpsWithDefaultPort(String scheme, int serverPort) {
+		return "https".equals(scheme) && serverPort == HTTPS_PORT;
 	}
 
 }
