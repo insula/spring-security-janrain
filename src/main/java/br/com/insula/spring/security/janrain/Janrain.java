@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
 
 public class Janrain {
 
-	private static final String JANRAIN_URI = "/j_spring_janrain_security_check";
+	public static final String JANRAIN_URI = "/j_spring_janrain_security_check";
 
 	private static final int HTTPS_PORT = 443;
 

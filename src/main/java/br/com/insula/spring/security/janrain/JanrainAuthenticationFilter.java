@@ -18,6 +18,8 @@
  */
 package br.com.insula.spring.security.janrain;
 
+import static br.com.insula.spring.security.janrain.Janrain.JANRAIN_URI;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -34,7 +36,7 @@ public class JanrainAuthenticationFilter extends AbstractAuthenticationProcessin
 	private JanrainService janrainService;
 
 	protected JanrainAuthenticationFilter() {
-		super("/j_spring_janrain_security_check");
+		super(JANRAIN_URI);
 	}
 
 	@Override
