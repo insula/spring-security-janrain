@@ -49,11 +49,14 @@ public class JanrainService {
 
 	private String apiKey;
 
-	public JanrainAuthenticationToken authenticate(String token) throws IOException, XPathExpressionException,
-			ParserConfigurationException, SAXException {
-		HttpResponse httpResponse = httpClient.execute(createHttpPostRequest(token));
-		InputStream content = httpResponse.getEntity().getContent();
-		return parseJanrainAuthenticationToken(content);
+	public JanrainAuthenticationToken authenticate(String token) {
+		try {
+			HttpResponse httpResponse = httpClient.execute(createHttpPostRequest(token));
+			InputStream content = httpResponse.getEntity().getContent();
+			return parseJanrainAuthenticationToken(content);
+		} catch (Exception e) {
+			throw new JanrainException("Error processing token", e);
+		}
 	}
 
 	private JanrainAuthenticationToken parseJanrainAuthenticationToken(InputStream content)

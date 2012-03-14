@@ -88,6 +88,7 @@ public class JanrainAuthenticationToken extends AbstractAuthenticationToken {
 		return providerName;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
