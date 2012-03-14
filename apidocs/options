@@ -1,0 +1,24 @@
+-classpath
+'/Users/yanaga/git/spring-security-janrain/target/checkout/target/classes:/Users/yanaga/.m2/repository/org/springframework/spring-beans/3.0.6.RELEASE/spring-beans-3.0.6.RELEASE.jar:/Users/yanaga/.m2/repository/org/apache/httpcomponents/httpclient/4.1/httpclient-4.1.jar:/Users/yanaga/.m2/repository/org/apache/httpcomponents/httpcore/4.1/httpcore-4.1.jar:/Users/yanaga/.m2/repository/org/springframework/spring-web/3.0.6.RELEASE/spring-web-3.0.6.RELEASE.jar:/Users/yanaga/.m2/repository/org/springframework/spring-asm/3.0.6.RELEASE/spring-asm-3.0.6.RELEASE.jar:/Users/yanaga/.m2/repository/org/springframework/spring-core/3.0.6.RELEASE/spring-core-3.0.6.RELEASE.jar:/Users/yanaga/.m2/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar:/Users/yanaga/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar:/Users/yanaga/.m2/repository/org/springframework/security/spring-security-core/3.1.0.RELEASE/spring-security-core-3.1.0.RELEASE.jar:/Users/yanaga/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar:/Users/yanaga/.m2/repository/org/springframework/spring-aop/3.0.6.RELEASE/spring-aop-3.0.6.RELEASE.jar:/Users/yanaga/.m2/repository/org/springframework/spring-jdbc/3.0.6.RELEASE/spring-jdbc-3.0.6.RELEASE.jar:/Users/yanaga/.m2/repository/org/springframework/spring-expression/3.0.6.RELEASE/spring-expression-3.0.6.RELEASE.jar:/Users/yanaga/.m2/repository/org/springframework/security/spring-security-web/3.1.0.RELEASE/spring-security-web-3.1.0.RELEASE.jar:/Users/yanaga/.m2/repository/org/springframework/spring-context/3.0.6.RELEASE/spring-context-3.0.6.RELEASE.jar:/Users/yanaga/.m2/repository/org/slf4j/jcl-over-slf4j/1.6.1/jcl-over-slf4j-1.6.1.jar:/Users/yanaga/.m2/repository/org/springframework/security/spring-security-crypto/3.1.0.RELEASE/spring-security-crypto-3.1.0.RELEASE.jar:/Users/yanaga/.m2/repository/commons-codec/commons-codec/1.4/commons-codec-1.4.jar:/Users/yanaga/.m2/repository/org/springframework/spring-tx/3.0.6.RELEASE/spring-tx-3.0.6.RELEASE.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/Users/yanaga/git/spring-security-janrain/target/checkout/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2012 <a href="http://www.insula.com.br">Insula Tecnologia</a>. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/yanaga/git/spring-security-janrain/target/checkout/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'spring-security-janrain 1.1.5 API'
+-link
+'http://java.sun.com/javase/6/docs/api'
+-use
+-version
+-windowtitle
+'spring-security-janrain 1.1.5 API'

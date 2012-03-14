@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>spring-security-janrain - Checkstyle report</title>
+    <link>https://github.com/insula/spring-security-janrain</link>
+    <description>spring-security-janrain - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2012 Insula Tecnologia</copyright>
+    <item>
+      <title>File: 6,
+             Errors: 381,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>https://github.com/insula/spring-security-janrain/checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://github.com/insula/spring-security-janrain/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://github.com/insula/spring-security-janrain/checkstyle.html#br.com.insula.spring.security.janrain.JanrainService.java">br/com/insula/spring/security/janrain/JanrainService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  108
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/insula/spring-security-janrain/checkstyle.html#br.com.insula.spring.security.janrain.JanrainAuthenticationToken.java">br/com/insula/spring/security/janrain/JanrainAuthenticationToken.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  91
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/insula/spring-security-janrain/checkstyle.html#br.com.insula.spring.security.janrain.Janrain.java">br/com/insula/spring/security/janrain/Janrain.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  75
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/insula/spring-security-janrain/checkstyle.html#br.com.insula.spring.security.janrain.JanrainAuthenticationFilter.java">br/com/insula/spring/security/janrain/JanrainAuthenticationFilter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  52
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/insula/spring-security-janrain/checkstyle.html#br.com.insula.spring.security.janrain.JanrainException.java">br/com/insula/spring/security/janrain/JanrainException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/insula/spring-security-janrain/checkstyle.html#br.com.insula.spring.security.janrain.JanrainAuthenticationProvider.java">br/com/insula/spring/security/janrain/JanrainAuthenticationProvider.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  40
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
